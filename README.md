@@ -23,9 +23,9 @@ stdout([outputStream])
 
 Returns a writable stream that accepts Buffers, strings, or objects.
 
-When given a Buffer, it outputs it directly.
-When given a string, it just outputs it with a newline, just like `console.log`.
-When given an object, it uses `util.inspect` and a newline, just like `console.log`.
+- When given a Buffer, it outputs it directly.  
+- When given a string, it just outputs it with a newline, just like `console.log`.  
+- When given an object, it uses `util.inspect` and a newline, just like `console.log`.  
 
 
 License
