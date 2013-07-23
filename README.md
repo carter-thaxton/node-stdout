@@ -19,10 +19,13 @@ request('http://isaacs.couchone.com/registry/_all_docs')
 stdout([outputStream])
 ----------------------
 
-Returns a writable stream that accepts either objects or strings.
-When given an object, it uses `util.inspect`, just like `console.log`.
+`outputStream` is optional.  Defaults to `process.stdout`, but you can provide another stream like `process.stderr` if you want.
 
-- `outputStream` is optional.  Defaults to `process.stdout`, but you can provide another stream like `process.stderr` if you want.
+Returns a writable stream that accepts Buffers, strings, or objects.
+
+When given a Buffer, it outputs it directly.
+When given a string, it just outputs it with a newline, just like `console.log`.
+When given an object, it uses `util.inspect` and a newline, just like `console.log`.
 
 
 License

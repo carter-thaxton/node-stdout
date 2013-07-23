@@ -5,7 +5,14 @@ function stdout(outputStream) {
   var output = outputStream || process.stdout
   var ws = stream.Writable({objectMode: true})
   ws._write = function(data, enc, next) {
-    output.write(util.inspect(data) + '\n')
+    var str;
+    if (Buffer.isBuffer(data)) {
+      output.write(data)
+    } else if (typeof data === 'string') {
+      output.write(data + '\n')
+    } else {
+      output.write(util.inspect(data) + '\n')
+    }
     next()
   }
   return ws
