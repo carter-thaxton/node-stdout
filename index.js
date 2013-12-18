@@ -1,21 +1,34 @@
-var stream = require('stream')
+var through = require('through2')
 var util = require('util')
 
 function stdout(outputStream) {
-  var output = outputStream || process.stdout
-  var ws = stream.Writable({objectMode: true})
-  ws._write = function(data, enc, next) {
+  var output = outputStream
+  if (!output) {
+    if (process.browser) output = consoleLogStream()
+    else output = process.stdout
+  }
+  var ws = through({objectMode: true}, write)
+  function write(data, enc, next) {
     var str;
     if (Buffer.isBuffer(data)) {
-      output.write(data)
+      this.push(data)
     } else if (typeof data === 'string') {
-      output.write(data + '\n')
+      this.push(data + '\n')
     } else {
-      output.write(util.inspect(data) + '\n')
+      this.push(util.inspect(data) + '\n')
     }
     next()
   }
+  ws.pipe(output)
   return ws
+}
+
+function consoleLogStream() {
+  return through(function(data, enc, next) {
+    if (Buffer.isBuffer(data)) console.log(data.toString())
+    else console.log(data)
+    next()
+  })
 }
 
 module.exports = stdout;

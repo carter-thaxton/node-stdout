@@ -21,5 +21,8 @@
   },
   "bugs": {
     "url": "https://github.com/carter-thaxton/node-stdout/issues"
+  },
+  "dependencies": {
+    "through2": "~0.2.3"
   }
 }
