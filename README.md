@@ -21,6 +21,8 @@ stdout([outputStream])
 
 `outputStream` is optional.  Defaults to `process.stdout`, but you can provide another stream like `process.stderr` if you want.
 
+In the browser, it will automatically use `console.log`
+
 Returns a writable stream that accepts Buffers, strings, or objects.
 
 - When given a Buffer, it outputs it directly.  
