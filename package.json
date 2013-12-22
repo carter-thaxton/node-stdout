@@ -1,6 +1,6 @@
 {
   "name": "stdout",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "pipe objects to console.log",
   "main": "index.js",
   "scripts": {
