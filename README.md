@@ -16,10 +16,14 @@ request('http://isaacs.couchone.com/registry/_all_docs')
 ```
 
 
-stdout([outputStream])
+stdout([outputStream, prefix])
 ----------------------
 
 `outputStream` is optional.  Defaults to `process.stdout`, but you can provide another stream like `process.stderr` if you want.
+
+`prefix` is an optional string argument. If provided it will prepend each message with the prefix.
+
+e.g. `stdout('foo: ')('bar')` would write out `foo: bar`
 
 In the browser, it will automatically use `console.log`
 
